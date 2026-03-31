@@ -71,7 +71,7 @@
     "build:cjs": "cross-env FILE=cjs rollup -c",
     "build:umd": "cross-env FILE=umd rollup -c",
     "build:min": "cross-env FILE=min rollup -c",
-    "clean": "rimraf build/*",
+    "clean": "premove build",
     "copyright": "node license-update.mjs",
     "dist:copy": "cpy --flat build/cytoscape.umd.js build/cytoscape.min.js build/cytoscape.cjs.js build/cytoscape.esm.mjs build/cytoscape.esm.min.mjs dist",
     "dist": "cross-env NODE_ENV=production run-s build dist:*",
@@ -136,7 +136,7 @@
     "marked": "^4.0.10",
     "mocha": "^11.1.0",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.0",
+    "premove": "^4.0.0",
     "rollup": "^4.31.0",
     "rollup-plugin-license": "^3.5.3"
   }
