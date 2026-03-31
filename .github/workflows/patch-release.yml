@@ -28,13 +28,18 @@ jobs:
           node-version: 22
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: latest
       - name: Install dependencies
-        run: npm install
+        run: bun ci
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: bunx playwright install --with-deps
       - name: Run tests
         run : |
-          npm test 
+          bun run test 
       - name: Get new version string
         id: get_new_patch_version
         run: |
@@ -96,7 +101,7 @@ jobs:
           name: npm-release--failure-report
           path: /home/runner/.npm/_logs/
       - name: Publish Package To npmjs
-        run:  npm publish
+        run:  bun publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish Package to GitHub Releases
